@@ -1,0 +1,29 @@
+{
+  "name": "y",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jpatel531/pusher_new_york_times",
+  "authors": [
+    "Jamie Patel <jamie@notespublication.com>"
+  ],
+  "description": "Using the New York Times API with Pusher",
+  "main": "app.js",
+  "keywords": [
+    "realtime",
+    "pusher",
+    "new-york-times",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.0",
+    "pusher-angular": "~0.1.1",
+    "pusher": "~2.2.3"
+  }
+}

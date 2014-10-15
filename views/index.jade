@@ -4,9 +4,9 @@ block content
 
   div(ng-controller="AppCtrl")
 
-    div(ng-repeat="article in articles")
+    div(ng-repeat="article in articles track by $index")
 
       h1 {{article.headline.main}}
 
-      h2 {{article.lead_paragraph}}
+      p {{article.lead_paragraph}}
 

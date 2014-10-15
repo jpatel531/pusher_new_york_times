@@ -6,3 +6,5 @@ var pusher = new Pusher({
   key: secrets.pusherKey,
   secret: secrets.pusherSecret
 });
+
+module.exports = pusher;
