@@ -58,10 +58,4 @@ var getArticles = function(){
 	}, 10000);
 };
 
-// try {
-	getArticles();
-// } catch(e) {
-	// console.log(e);
-	getArticles();
-// }
-
+getArticles();
