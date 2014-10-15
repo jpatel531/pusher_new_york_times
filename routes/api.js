@@ -13,6 +13,8 @@ module.exports = router;
 
 // NYT
 
+nyt.newswire.recent({'section': 'all'}, console.log)
+
 var currentArticles = []
 var previousArticles = []
 
