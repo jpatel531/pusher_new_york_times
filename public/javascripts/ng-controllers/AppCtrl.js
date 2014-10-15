@@ -15,6 +15,7 @@ app.controller('AppCtrl', ['$scope', '$http', '$pusher', function($scope, $http,
 
 	newsChannel.bind('new-story', function(data){
 		console.log("Receiving event...")
+		console.log(data)
 		$scope.articles.push(data);
 	});
 
