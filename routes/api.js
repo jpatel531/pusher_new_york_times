@@ -13,15 +13,14 @@ module.exports = router;
 
 // NYT
 
-nyt.newswire.recent({'section': 'all'}, console.log)
 
 var currentArticles = []
 var previousArticles = []
 
 var deltaArticles = function(){
 	var newArticles =  _.filter(currentArticles, function(currentArticle){
-		var previousArticlesIds = _.pluck(previousArticles, "_id");
-		if (!(_.contains(previousArticlesIds, currentArticle._id))) return true
+		var previousArticlesTitles = _.pluck(previousArticles, "title");
+		if (!(_.contains(previousArticlesTitles, currentArticle.title))) return true
 	});
 
 	return newArticles
@@ -31,6 +30,7 @@ var triggerEvent = function(){
 	console.log("Triggering event...");
 
 	var newArticles = deltaArticles();
+	console.log(newArticles);
 
 	_.each(newArticles, function(article){
 		pusher.trigger('news-channel', 'new-story', article)
@@ -40,19 +40,28 @@ var triggerEvent = function(){
 };
 
 var processListOf = function(articles){
-	currentArticles = JSON.parse(articles).response.docs;
-	currentArticles.shift();
+	try {
+		currentArticles = JSON.parse(articles).results;
+	} catch(e){
+		setImmediate(getArticles)
+	}
 	triggerEvent();
 };
 
 var getArticles = function(){
 	previousArticles = currentArticles
 	setTimeout(function(){
-		nyt.article.search({"sort":"newest"}, function(articles){
+		nyt.newswire.recent({"section":"all"}, function(articles){
 			processListOf(articles);
 			getArticles();
 		});
-	}, 8000);
+	}, 10000);
 };
 
-getArticles();
+// try {
+	getArticles();
+// } catch(e) {
+	// console.log(e);
+	getArticles();
+// }
+

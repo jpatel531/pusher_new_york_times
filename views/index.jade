@@ -6,7 +6,7 @@ block content
 
     div(ng-repeat="article in articles track by $index")
 
-      h1 {{article.headline.main}}
+      h1 {{article.title}}
 
-      p {{article.lead_paragraph}}
+      p {{article.abstract}}
 
